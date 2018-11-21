@@ -65,7 +65,7 @@ App({
   globalData: {
     userInfo: null,
     servsersUrl: "http://172.16.0.39:8080/wechat",
-  //  appid: 'wx3c6ad1ea41695b0c', //appid需自己提供，此处的appid我随机编写
-    //secret: '8a5c0cf5996aaaa815686c3c92b2c74a', //secret需自己提供，此处的secret我随机编写
+    //  appid: 'wx3c6ad1ea41695b0c', 
+    //secret: '8a5c0cf5996aaaa815686c3c92b2c74a', 
   }
 })
