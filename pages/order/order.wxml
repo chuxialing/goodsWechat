@@ -1,0 +1,57 @@
+<!--logs.wxml-->
+<view class="content">
+  <block wx:for="{{orderList}}" wx:for-item="order" wx:key="order.orderId">
+    <view class="orderDetails">
+      <view class="orderListTitle" bindtap="toOrderItem">
+        <text class='orderNo'>订单号：{{order.orderId}}</text>
+        <text class="orderStatus">
+         <block wx:if="{{order.state=='90'}}">
+         已取消
+         </block> 
+         <block wx:if="{{order.state=='99'}}">
+         已完成
+         </block> 
+         <block wx:if="{{order.state=='10'}}">
+         待支付
+         </block> 
+         <block wx:if="{{order.state=='19'}}">
+         已支付
+         </block> 
+        </text>
+        <view class='del' bindtap='deleteOrder' data-id="{{order.orderId}}">
+          <image src='../../image/delete.png'></image>
+        </view>
+      </view>
+      <block wx:for="{{order.productList}}" wx:for-item="product">
+        <view class="orderListDetails" bindtap="toOrderItem" data-orderid="{{product.orderId}}">
+          <view class="productImg">
+            <image src="{{servsersUrl}}{{product.proPic}}"></image>
+          </view>
+          <view class="productInfo">
+            <view class="productTitle">{{product.proLevel}}-{{product.proName}}</view>
+            <text class="productPrice">￥{{product.proPrice}}</text>
+            <text class="productQuantity">x{{product.count}}</text>
+          </view>
+        </view>
+      </block>
+      <view class="productCount">
+        <view class='total'>合计
+          <text>￥{{order.totalPrice}}</text>
+        </view>
+        <view class='menu'>
+          <view class='other' bindtap='toOrderItem' data-orderid='{{order.orderId}}'>
+            查看详情
+          </view>
+          <block wx:if="{{order.state=='10'}}">
+            <view class='concle' bindtap='continuePay'>
+              继续支付
+            </view>
+            <view class='concle' bindtap='tapCancel' data-id="{{order.orderId}}">
+              取消订单
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

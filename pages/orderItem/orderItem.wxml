@@ -1,0 +1,62 @@
+<!--pages/orderItem/orderItem.wxml-->
+<view class="content">
+  <view class='order'>
+    <scroll-view scroll-y='true' style="height: 100%; background-color: white;">
+      <!-- 收货地址开始 -->
+      <view class="item">
+        <view class="info">
+          <text>{{order.receiver}}，{{order.phone}}</text>
+          <text>地址：{{order.detailAddress}}</text>
+        </view>
+      </view>
+      <view class='border-img' style='margin-top:-20rpx'>
+        <image src='../../image/border.png' mode='aspectFill' style='width:100%;height:5rpx'></image>
+      </view>
+      <!-- 收货地址结束 -->
+      <!-- 订单列表开始 -->
+      <block wx:for="{{productList}}" wx:for-item="product">         
+          <view class='order-item'>
+            <view class='icon'>
+              <image src='{{servsersUrl}}{{product.proPic}}'></image>
+            </view>
+            <view class='content_text'>
+              <text class='name'>{{product.proLevel}}-{{product.proName}}</text>
+              <view class='desc'>{{product.proStandard}}</view>
+              <view class='total'>
+                <text class='count'>数量：x{{product.count}}</text>
+                <text class='price'>¥{{product.proPrice}}</text>
+              </view>
+            </view>
+          </view> 
+      </block>
+      <!-- 订单列表结束 -->
+      <!-- 发票部分开始 -->
+      <view class="remarks-wrapper">
+        订单编号:
+        <view class='remarks' style='float:right;'>{{order.id}}</view>
+      </view>
+      <view class="remarks-wrapper">
+        发票抬头:
+        <view class='remarks'>{{order.invoice}}</view>
+      </view>
+      <!-- 发票部分结束 -->
+      <!-- 备注部分开始 -->
+      <view class="remarks-wrapper">
+        备注留言:
+        <view class='remarks'>{{order.remark}}</view>
+      </view>
+      <!-- 备注部分结束 -->
+      <!-- 订单总价开始 -->
+      <view class="remarks-wrapper">
+        订单总价:
+        <view class='remarks' style='float:right;'>¥{{order.total}}</view>
+      </view>
+      <!-- 订单总价结束 -->
+      <view class="remarks-wrapper">
+        下单时间:
+        <view class='remarks' style='float:right;'>{{order.payDateString}}</view>
+      </view>
+
+    </scroll-view>
+  </view>
+</view>

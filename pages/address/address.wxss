@@ -1,0 +1,59 @@
+/* pages/address/address.wxss */
+
+page {
+  display: block;
+  min-height: 100%;
+  background-color: #f6f6f6;
+  font-family: "微软雅黑";
+  font-size: 30rpx;
+  color: #353535;
+}
+
+.item {
+  background-color: #fff;
+  border-bottom: 1rpx solid #e0e0e0;
+  display: flex;
+  padding: 20rpx;
+}
+
+.info {
+  font-size: 27rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 85%;
+}
+
+.item image {
+  width: 50rpx;
+  padding-top: 15rpx;
+  margin: 0 15rpx;
+}
+
+.add {
+  width: 100%;
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+  padding: 15rpx 15rpx 30rpx 40rpx;
+  border-top: 1rpx solid #e0e0e0;
+}
+
+.add .addAre {
+  display: inline-block;
+  font-size: 56rpx;
+  padding: 6px;
+  line-height: 56rpx;
+  color: #00a0dc;
+}
+
+.text {
+  float: left;
+  font-size: 14px;
+  padding: 6px;
+  line-height: 56rpx;
+}
+
+.left {
+  float: left;
+}

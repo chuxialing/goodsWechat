@@ -1,0 +1,52 @@
+<!-- 信息部分开始 -->
+<form bindsubmit="formSubmit" report-submit="true">
+  <view class="info">
+    <!-- 姓名部分 -->
+    <view class="item">
+      <text>用户姓名</text>
+      <view class="right">
+        <input type="text" name="receiver" value="{{receiver}}" focus="{{focus}}" />
+        <!--
+        <input type='hidden' name="id" value='{{id}}'></input>-->
+        <input hidden='{{true}}' name="id" value='{{id}}'></input>
+      </view>
+    </view>
+
+    <!-- 电话部分 -->
+    <view class="item">
+      <text>联系电话</text>
+      <view class="right">
+        <input name="phone" type="number" value="{{phone}}" focus="{{focus}}" />
+      </view>
+    </view>
+
+
+
+    <!-- 收货地址部分 -->
+    <view class="item">
+      <text>所在区域</text>
+      <view class="right" bindtap="chooseAddress">
+        <!-- <picker name="addre" class="addre" value="{{addreValue}}" range="{{addreRange}}" bindchange="addrePickerBindchange">
+          {{addreRange[addreValue]}}
+        </picker> -->
+        <view class="addre">
+          {{province == ''?'点此处选择地区':province}} {{city}} {{area}}
+        </view>
+      </view>
+      <nyz_area_picker show="{{show}}" bind:sureSelectArea="sureSelectAreaListener">
+      </nyz_area_picker>
+    </view>
+
+    <!-- 详细地址部分 -->
+    <view class="item">
+      <text>详细地址</text>
+      <view class="right">
+        <input name="detailAddress" type="text" value="{{detailAddress}}" focus="{{focus}}" />
+      </view>
+    </view>
+  </view>
+  <!-- 信息部分结束 -->
+  <button class="save" formType="submit">保存</button>
+  <button class="delete" bindtap="delete" data-id="{{id}}">删除该地址</button>
+  <button class="delete" bindtap="cancel">取消</button>
+</form>

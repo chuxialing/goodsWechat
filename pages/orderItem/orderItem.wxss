@@ -1,0 +1,161 @@
+/* pages/orderItem/orderItem.wxss */
+
+.order {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 100rpx;
+  width: 100%;
+}
+
+/* 收货地址部分 */
+
+.address {
+  width: 100%;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+}
+
+.address image {
+  vertical-align: middle;
+}
+
+.item {
+  background-color: #fff;
+  border-bottom: 1rpx solid #e0e0e0;
+  display: flex;
+  padding: 20rpx;
+}
+
+.info {
+  font-size: 27rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 85%;
+}
+
+.address .title {
+  font-size: 14px;
+  line-height: 14px;
+}
+
+/* 订单列表部分 */
+
+.order-item {
+  display: flex;
+  margin: 18px;
+  padding-bottom: 18px;
+  position: relative;
+  border-bottom: 1rpx solid rgba(7, 17, 27, 0.1);
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.order-item .icon {
+  flex: 0 0 57px;
+  margin-right: 10px;
+}
+
+.order-item .icon image {
+  width: 114rpx;
+  height: 114rpx;
+}
+
+.order-item .content_text {
+  flex: 1;
+}
+
+.order-item .content_text .name {
+  font-size: 14px;
+  height: 14px;
+  line-height: 14px;
+  color: #07111b;
+  margin: 2px 0 8px 0;
+}
+
+.order-item .content_text .total {
+  display: flex;
+}
+
+.order-item .content_text .desc, .count {
+  margin-bottom: 8px;
+  line-height: 12px;
+  font-size: 12px;
+  color: rgb(147, 153, 159);
+}
+
+.content_text .count {
+  flex: 1;
+}
+
+.order-item .content_text .price {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  height: 14px;
+  line-height: 14px;
+  color: #f01414;
+}
+
+/* 发票部分 */
+
+.invoice-wrapper {
+  margin: -10px 18px 0 18px;
+  padding-bottom: 8px;
+  border-bottom: 1rpx solid rgba(7, 17, 27, 0.1);
+  line-height: 24rpx;
+}
+
+.invoice {
+  font-size: 14px;
+}
+
+.tap {
+  color: rgb(147, 153, 159);
+  float: right;
+  font-size: 14px;
+}
+
+.remarks-wrapper {
+  margin: 10px 18px 10px 18px;
+  border-bottom: 1rpx solid rgba(7, 17, 27, 0.1);
+  font-size: 14px;
+}
+
+.remarks {
+  color: rgb(156, 156, 156);
+}
+
+/* 提交部分 */
+
+.submit-wrapper {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: 100rpx;
+  z-index: 50;
+  margin: 10px 18px 0px 18px;
+}
+
+.submit-wrapper .content-left {
+  flex: 1;
+}
+
+.submit-wrapper .content-left .price {
+  color: #f01414;
+}
+
+.submit-wrapper .content-right {
+  flex: 1;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background-color: #1296db;
+  color: #fff;
+}

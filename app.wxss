@@ -1,0 +1,75 @@
+/**app.wxss**/
+
+.content {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-weight: normal;
+  vertical-align: baseline;
+}
+
+/*字体图标*/
+
+@font-face {
+  font-family: 'sell-icon';
+  src: url(data:application/font-woff2;charset=utf-8;base64,d09GMgABAAAAAARYAA0AAAAACfwAAAQDAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP0ZGVE0cGh4GYACCXhEICogAhhALIAABNgIkAyoEIAWDMweBHxsFCFGUMEoB2VeFMRhLwz6ptjJN1ckd3eTIed5bfs78oTjKFsu5FUoE0VrvV+/sEQQBHQBaUmGLJCOTD0DCPhDuAzly5/Od+k8ga/Bcz4PRC8/uYTqIW6AW6IDb/4L9zAvwPwO/FH/YX74D2KRBTAewT2x0vCalQSHOaSHuQv0na2pLVxCO2Zk6hSg/7wpMYwksWc7NdYpJoa0xy9SMnLcbdLckfcTX2ZMQ0P2aVIZe1jP+qwN1DEQmhKaQI0NK3fFAgexlNtwH+4k/zIsKXl20Hboa+a2Svu98b3WCaSCA6miBZB/uobKXPYiX5JajqiyTCaN/q3QOsAR/SYcNKkhCFUBIRJFIQGTIiP+ZIAfGFaJDC7TASAwgJhAPADkgEEJGYcOacExmSXDmMfV2f3y7Ph6mtrHtkaFhw7ABIReiimBgai8h+29bu9nZVZ32hKb3wJncviazpY5EqV9K72lj2W1dOG6K2AzxTM+/vNNqsFlMdpvZag+bfnb39Mz9EHXTL30u+4py+7viu19mVHn3PuMduDG7/LUTsZ2BEUt4v5AnCJ7q/r3Y1X2kwoq9DfXtbU2GIU9Ok63sXe3cQm1X6zZ3CTf6O/Lk+s7+W5SGZvReit1FPpQxtlrLq/thS4Z5IoM4GnvqkZ5BVSpXcNcol/tTSsGUdRGWlDo7PpABOxvYyqVCrX+lup/ufDsvezWf71/BZy4LI+H/x5dfSFvZklbpEWQ9ZixsCrm/l+I/C17/dv3609i66+sHTaagN3oU/8UZvlLfzLB329axwdEh39z19UCLWFx/9bC1K9qsFkRbultSqfrQIa0D1zcJmkQNkWWahXXhJ5HyVYfH/E5k5gNtPvtIB45TbOYtb0P3d2N3d6XSnR2WfHPzmtvb3cyByrzEfnxkk/c956y2DiomeOTq31SWau55T/J2bDeyCzOk1ubShtbC3Ofw2/D2awS1ZNVageivz1D6lJ+ayUdz0Nvb/m1dWy+s6Piu2bbS7e59+9/bg/z7Lf/8XKy1/J9yTV5uSbybzjv1pC9QloFgGTtYDlIPkYbiOJLZBeBO5OzGsNsPu2MDypKaAy0rpVQzgy5ueleAUNFfMIKSmWL8ScVWBOQqziKgoOaWAEUVbwSoGup3JJFXhL44okzTSFHS10JsDjtFBQOdFxX19ez2VfN97ILRyorrnN7WBo4VNnfTuxjYbjR1ttI6wJd5c0eBoRKwu+MHR3Ou2TTHTLO5cm9ojhcUtm/krCcifsZoU5Vs62Q05B93Z9pSxFLDNgTq8cbQdS5Dt/Tbn1vcBBnxc1tEJoskRR6FKEYpylGJatSiHo3imdV9NwtLlzbzYHZgsKpydgAhRBBDAilkkENhKwE=) format('woff2'),
+         url(data:application/font-woff;charset=utf-8;base64,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) format('woff'),
+         url('sell-icon.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'sell-icon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-add_circle:before {
+  content: "\e900";
+}
+
+.icon-arrow_lift:before {
+  content: "\e901";
+}
+
+.icon-check_circle:before {
+  content: "\e902";
+}
+
+.icon-close:before {
+  content: "\e903";
+}
+
+.icon-favorite:before {
+  content: "\e904";
+}
+
+.icon-keyboard_arrow_right:before {
+  content: "\e905";
+}
+
+.icon-remove_circle_outline:before {
+  content: "\e906";
+}
+
+.icon-shopping_cart:before {
+  content: "\e907";
+}
+
+.icon-thumb_down:before {
+  content: "\e908";
+}
+
+.icon-thumb_up:before {
+  content: "\e909";
+}

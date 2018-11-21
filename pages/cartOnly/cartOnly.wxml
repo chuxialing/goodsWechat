@@ -1,0 +1,68 @@
+<!--pages/cartOnly/cartOnly.wxml-->
+ 
+<view class="content">
+  <view class='order'>
+    <scroll-view scroll-y='true' style="height: 100%; background-color: white;">
+    
+      <!-- 收货地址开始 -->  
+      <block wx:if="{{receiver==''}}">        
+      <view class="address" bindtap="addressPage"  >
+        <image src="../../image/cart_add_img_4.jpg" style=" width:40rpx;height:40rpx;" border="0"   class="add_img"></image>
+        <text class="title">点击选择收货地址</text>
+      </view>
+      </block>  
+       <block wx:if="{{receiver!='' && receiver!='undefined'}}">   
+       <view class="item" bindtap="addressPage">
+        <view class="info">
+          <text>{{receiver}}，{{phone}}</text>
+          <text>地址：{{detailAddress}}</text>
+        </view>
+      </view>      
+       </block>
+      <view class='border-img' style='margin-top:-20rpx'>
+        <image src='../../image/border.png' mode='aspectFill' style='width:100%;height:5rpx'></image>
+      </view>
+      <!-- 收货地址结束 -->
+      <!-- 商品开始 --> 
+       <view class='order-item'>
+          <view class='icon'>
+            <image src='{{servsersUrl}}{{proPic}}'></image>
+          </view>
+          <input hidden='{{true}}' name="proId" value='{{proId}}'></input>
+          <view class='content_text'>
+            <text class='name'>{{proLevel}}-{{proName}}</text>
+            <view class='desc'>{{proStandard}}</view>
+            <view class='total'>
+              <text class='count'>数量：x 1 </text>
+              <text class='price'>¥{{proPrice}}</text>
+            </view>
+          </view>
+        </view> 
+      <!-- 商品结束 -->
+      <!-- 发票部分开始 -->
+      <view class="remarks-wrapper">
+        发票抬头:
+        <input class='remarks' placeholder="请填写发票抬头" name="invoice" focus="{{focus}}" bindinput ="invoiceInput"></input>
+      </view>
+      <!-- 发票部分结束 -->
+      <!-- 备注部分开始 -->
+      <view class="remarks-wrapper">
+        备注留言:
+        <input class='remarks' placeholder="请备注留言" type="text" name="remark" focus="{{focus}}" bindinput ="remarkInput"></input>
+      </view>
+      <!-- 备注部分结束 -->
+    </scroll-view>
+    <!-- 合计开始 -->
+    <view class="submit-wrapper">
+      <view class='content-left'>合计:
+        <text class='price'>¥{{totalPrice}}</text>
+      </view>
+     
+      <view class='content-right' bindtap='saveOrder'>确认</view>
+      <!--
+       <button class="save" formType="submit">确认</button> -->
+    </view>
+    <!-- 合计结束 -->
+  </view>
+</view>
+ 

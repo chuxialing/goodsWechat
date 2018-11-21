@@ -1,0 +1,89 @@
+<!--pages/goodsDetail/goodsDetail.wxml-->
+<view class='content'>
+  <!-- 介绍轮播图开始 -->
+  <view class='goods'>
+    <scroll-view scroll-y='true' style="height: 100%; background-color: white;">
+      <view class='img-header'>
+        <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="true" interval="5000" duration="1000" indicator-active-color="{{afterColor}}" style='height:550rpx'>
+          <block wx:for="{{lbList}}" wx:for-index="index" wx:for-item="annex">
+            <swiper-item>
+              <image src="{{servsersUrl}}{{annex.storageLocation}}" class="slide-image" mode="scaleToFill" style='width:100%; height:100%' />
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+      <!-- 介绍轮播图结束 -->
+      <!-- 商品信息开始 -->
+      <view class='content-info'>
+        <text class='title'>{{product.proLevel}}-{{product.proName}}</text>
+        <view class='detail'>
+          <view class='profile'>{{product.proShortDesc}}</view>
+          <text class='sell-mode'>{{product.proStandard}}</text>
+          <!-- <view class='cartcontrol-wrapper'>
+        <view class='cartcontrol'>
+          <view class='cart-decrease'>
+            <text class='inner icon-remove_circle_outline' wx:if="{{product.count>0}}" bindtap='decreseCart' id='{{index}}'></text>
+          </view>
+          <view class='cart-count' wx:if="{{product.count>0}}">{{product.count}}</view>
+          <view class='cart-add icon-add_circle' bindtap='addCart' id='{{index}}'></view>
+        </view>
+      </view> -->
+        </view>
+        <view class='price'>
+          <text class='now'>¥{{product.proPrice}}</text>
+          <text class='old'></text>
+        </view>
+        <!-- <view class='buy'>加入购物车</view> -->
+        <!-- 商品信息结束 -->
+      </view>
+      <!-- 商品信息结束 -->
+      <view class='split'></view>
+      <!-- 商品详情开始 -->
+      <view class='detail-info'>
+        <text class='detail-title'>商品详情</text>
+        <view class='info-table'>
+
+          <view class='item'>
+            <text class='item-title'>产地</text>
+            <text class='item-info'>{{product.proArea}}</text>
+          </view>
+
+          <view class='item'>
+            <text class='item-title'>规格</text>
+            <text class='item-info'>{{product.proStandard}}</text>
+          </view>
+
+          <view class='item'>
+            <text class='item-title'>存储方式</text>
+            <text class='item-info'>{{product.proStorage}}</text>
+          </view>
+
+        </view>
+        <block wx:for="{{xqList}}" wx:for-item="annex">
+          <view class='info-img'>
+            <image src='{{servsersUrl}}{{annex.storageLocation}}' style='width:100%' mode='scaleToFill'></image>
+          </view>
+        </block>
+      </view>
+      <!-- 商品详情结束 -->
+    </scroll-view>
+  </view>
+  <!-- 购买区开始 -->
+  <view class='shopcart'>
+    <view class='content'>
+      <view class='content-left'>
+        <view class='logo-wrapper' bindtap='toShopcart'>
+          <view class="logo">
+            <text class="icon-shopping_cart"></text>
+          </view>
+          <view class='num' wx:if="{{cartCount>0}}">{{cartCount}}</view>
+        </view>
+      </view>
+      <view class='content-right'>
+        <view class="pay" bindtap='cartPage' data-proid="{{product.id}}" data-proLevel="{{product.proLevel}}" data-proName="{{product.proName}}" data-proStandard="{{product.proStandard}}" data-proPrice="{{product.proPrice}}" data-proPic="{{product.proPic}}">立即购买</view>
+        <view class="pay green" bindtap='addCart' data-id='{{product.id}}'>加入购物车</view>
+      </view>
+    </view>
+  </view>
+  <!-- 购买区结束 -->
+</view>

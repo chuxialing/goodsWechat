@@ -1,0 +1,133 @@
+<!--index.wxml-->
+<view class='content'>
+  <!-- 头部开始 -->
+  <view class='header' style='height:174rpx;'>
+    <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="true" interval="5000" duration="1000">
+      <block wx:for="{{movies}}" wx:for-index="index">
+        <swiper-item>
+          <image src="{{item.url}}" class="slide-image" mode="aspectFill" style='height:174rpx;' />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 头部结束 -->
+  <!-- 商品开始 -->
+  <view class='goods'>
+    <!-- 左侧目录开始 -->
+
+    <view class='menu-wrapper'>
+      <scroll-view scroll-y='true' style="height: 100%; background-color: white;">
+        <block wx:for="{{proTypeList}}" wx:for-item="proType">
+          <view class="menu-item" bindtap='selectMenu' id='{{proType.proTypeCode}}'>
+            <block wx:if="{{clickId==proType.proTypeCode}}">
+              <text class='text' style='color:#00a0dc;'>
+               {{proType.proTypeName}}
+              </text>
+            </block>
+            <block wx:else>
+              <text class='text'>
+               {{proType.proTypeName}}
+              </text>
+            </block>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+    <!-- 左侧目录结束 -->
+    <!-- 商品列表开始 -->
+    <view class='foods-wrapper'>
+      <scroll-view scroll-y='true' style="height: 100%; background-color: white;">
+        <block wx:for="{{productList}}" wx:for-item="product">
+          <block wx:if="{{clickId!='' && clickId==product.proType}}">
+            <view class='food-item'>
+              <view class='icon' bindtap='toDetail' id='{{index}}'>
+                <image src='{{servsersUrl}}{{product.proPic}}'></image>
+              </view>
+              <view class='content' id='{{index}}' bindtap='toDetail'>
+                <text class='name' >{{product.proLevel}}-{{product.proName}}</text>
+                <view class='desc' >{{product.proStandard}}</view>
+                <!--
+              <view class='extra'>
+                <text>月售3份 </text>
+                <text>好评率100%</text>
+              </view>
+              -->
+                <view class='price'>
+                  <text class='now'>¥{{product.proPrice}}</text>
+                </view>
+                <!-- <view class='cartcontrol-wrapper'>
+                  <view class='cartcontrol'>
+                    <view class='cart-decrease'>
+                      <text class='inner icon-remove_circle_outline' wx:if="{{product.count>0}}" bindtap='decreseCart' id='{{index}}'></text>
+                    </view>
+                    <view class='cart-count' wx:if="{{product.count>0}}">{{product.count}}</view>
+                    <view class='cart-add icon-add_circle' bindtap='addCart' id='{{index}}'></view>
+                  </view>
+                </view> -->
+              </view>
+            </view>
+          </block>
+          <block wx:if="{{clickId==''}}">
+            <view class='food-item'>
+              <view class='icon' bindtap='toDetail' id='{{index}}'>
+                <image src='{{servsersUrl}}{{product.proPic}}'></image>
+              </view>
+              <view class='content' id='{{index}}' bindtap='toDetail'>
+                <text class='name' >{{product.proLevel}}-{{product.proName}}</text>
+                <view class='desc' >{{product.proStandard}}</view>
+                <!--
+              <view class='extra'>
+                <text>月售3份 </text>
+                <text>好评率100%</text>
+              </view>
+              -->
+                <view class='price'>
+                  <text class='now'>¥{{product.proPrice}}</text>
+                </view>
+                <!-- <view class='cartcontrol-wrapper'>
+                  <view class='cartcontrol'>
+                    <view class='cart-decrease'>
+                      <text class='inner icon-remove_circle_outline' wx:if="{{product.count>0}}" bindtap='decreseCart' id='{{index}}'></text>
+                    </view>
+                    <view class='cart-count' wx:if="{{product.count>0}}">{{product.count}}</view>
+                    <view class='cart-add icon-add_circle' bindtap='addCart' id='{{index}}'></view>
+                  </view>
+                </view> -->
+              </view>
+            </view>
+          </block>
+        </block>
+      </scroll-view>
+    </view>
+    <!-- 商品列表结束 -->
+    <view>
+      <!-- 购物车开始 -->
+      <!-- <view class='shopcart'>
+        <view class='content'>
+          <view class='content-left'>
+            <view class='logo-wrapper'>
+              <view class="logo {{totalCount>0 ? ' highlight ': ' '}}">
+                <text class="icon-shopping_cart {{totalCount>0 ? ' highlight ':' '}}"></text>
+              </view>
+              <view class='num' wx:if="{{totalCount>0}}">{{totalCount}}</view>
+            </view>
+            <view class='price'>¥{{totalPrice}}</view>
+            <view class='desc'>另需配送费¥ 4元</view>
+          </view>
+          <view class='content-right'>
+            <block wx:if="{{totalPrice>=minPrice}}">
+              <view class="pay green" bindtap='cartPage'>{{'去结算'}}</view>
+            </block>
+            <block wx:else>
+              <view class='pay'>
+                {{'¥'+minPrice+'元起购'}}
+              </view>
+            </block>
+          </view>
+        </view>
+      </view> -->
+      <!-- 购物车结束 -->
+    </view>
+  </view>
+  <!-- 商品部分结束 -->
+</view>

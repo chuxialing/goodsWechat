@@ -1,0 +1,15 @@
+<!--pages/address/address.wxml-->
+<view class="item" wx:for="{{addrList}}" bindtap="toCart" data-index="{{item.index}}" id='{{index}}' >
+   <image src="/image/uncheck.png" mode="widthFix" />
+  <view class="info">
+    <text>{{item.receiver}}，{{item.phone}}</text>
+    <text>地址：{{item.province}} {{item.city}} {{item.area}} {{item.detailAddress}}</text>
+  </view>
+  <view class="modify" bindtap="toModifyAddre" data-index="{{item.index}}" id='{{index}}'>
+    <image src="/image/modify.png" mode="widthFix" bindtap="detete" />
+  </view>
+</view>
+<view class="add" bindtap="addAddre">
+  <view class='addAre icon-add_circle left'></view>
+  <view class="text">新增个人地址</view>
+</view>
