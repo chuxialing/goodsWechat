@@ -12,8 +12,8 @@
 		"nodeModules": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.3.0",
-	"appid": "wx214a3a90696ccc65",
+	"libVersion": "2.4.0",
+	"appid": "wx146d48076a2bd85e",
 	"projectname": "%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%AC%AC%E4%B8%80%E5%A4%A9",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 4,
 			"list": [
 				{
 					"id": 0,
@@ -60,7 +60,13 @@
 				{
 					"id": -1,
 					"name": "mine",
-					"pathName": "pages/mine/mine"
+					"pathName": "pages/mine/mine",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "cart",
+					"pathName": "pages/cart/cart"
 				}
 			]
 		}

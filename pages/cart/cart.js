@@ -16,19 +16,19 @@ Page({
     servsersUrl: app.globalData.servsersUrl,
     'totalCount': 0,
     'totalPrice': 0,
-     "receiver":'',
-     "phone":'',
-     "detailAddress":'',
-     productList: productList 
+    "receiver": '',
+    "phone": '',
+    "detailAddress": '',
+    productList: productList
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var that = this; 
+    var that = this;
     var list = wx.getStorageSync("goodList") //取缓存
-     
+
     //计算商品总额
     var goodList = list;
     if (goodList != null && goodList != "" && goodList != "undefined") {
@@ -44,15 +44,15 @@ Page({
       totalPrice = totalPrice.toFixed(2);
       this.setData({
         'totalCount': totalCount,
-        'totalPrice': totalPrice,       
-         productList: list
+        'totalPrice': totalPrice,
+        productList: list
       })
 
       if (options.receiver != null && options.receiver != "" && options.receiver != "undefined") {
-        this.setData({ 
+        this.setData({
           "receiver": options.receiver,
           "phone": options.phone,
-          "detailAddress": options.detailAddress 
+          "detailAddress": options.detailAddress
         })
       }
     }
@@ -61,30 +61,30 @@ Page({
   /**
    * 保存订单
    */
-  saveOrder: function (e) {
+  saveOrder: function(e) {
     var warn = "";
-    var that = this; 
+    var that = this;
 
-    var userInfo = wx.getStorageSync('user'); 
+    var userInfo = wx.getStorageSync('user');
 
     wx.request({
-      url: app.globalData.servsersUrl +'/product/OrderGoods/saveOrder.do', //请求地址      
-      data: {//发送给后台的数据        
+      url: app.globalData.servsersUrl + '/product/OrderGoods/saveOrder.do', //请求地址      
+      data: { //发送给后台的数据        
         userId: userInfo.openid,
         receiver: that.data.receiver,
-        phone: that.data.phone, 
+        phone: that.data.phone,
         detailAddress: that.data.detailAddress,
         invoice: that.data.invoice,
         remark: that.data.remark,
-        total: that.data.totalPrice ,
+        total: that.data.totalPrice,
         productListStr: JSON.stringify(that.data.productList)
       },
 
       header: { //请求头        
         'content-type': 'application/x-www-form-urlencoded',
       },
-      method: "post",//get为默认方法/POST     
-      success: function (res) {
+      method: "post", //get为默认方法/POST     
+      success: function(res) {
         //支付
         that.payoff(e);
         /** 
@@ -92,98 +92,103 @@ Page({
           url: '../order/order'
         }) */
       },
-      fail: function (err) { }, //请求失败     
-      complete: function () { } //请求完成后执行的函数    
-    })  
+      fail: function(err) {}, //请求失败     
+      complete: function() {} //请求完成后执行的函数    
+    })
   },
- 
+
   //获取用户输入的发票抬头
-  invoiceInput: function (e) {
+  invoiceInput: function(e) {
     this.setData({
       invoice: e.detail.value
     })
   },
 
   //获取用户输入的备注
-  remarkInput: function (e) {
+  remarkInput: function(e) {
     this.setData({
       remark: e.detail.value
     })
   },
 
-  payoff: function (e) {
+  payoff: function(e) {
     var that = this;
     wx.login({
-      success: function (res) {
+      success: function(res) {
         that.getOpenId(res.code);
       }
     });
 
   },
   //获取openid
-  getOpenId: function (code) {
+  getOpenId: function(code) {
     var that = this;
     wx.request({
-      url: app.globalData.servsersUrl +'/GetOpenId',
+      url: app.globalData.servsersUrl + '/GetOpenId',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
-      data: { 'code': code },
-      success: function (res) {
+      data: {
+        'code': code
+      },
+      success: function(res) {
         var openId = res.data.openid;
         that.xiadan(openId);
       }
     })
   },
   //下单
-  xiadan: function (openId) {
+  xiadan: function(openId) {
     var that = this;
     wx.request({
-      url: app.globalData.servsersUrl +'/xiadan',
+      url: app.globalData.servsersUrl + '/xiadan',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
-      data: { 'openid': openId },
-      success: function (res) {
+      data: {
+        'openid': openId
+      },
+      success: function(res) {
         var prepay_id = res.data.prepay_id;
         that.sign(prepay_id);
       }
     })
   },
   //签名
-  sign: function (prepay_id) {
+  sign: function(prepay_id) {
     var that = this;
     wx.request({
-      url: app.globalData.servsersUrl +'/sign',
+      url: app.globalData.servsersUrl + '/sign',
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
-      data: { 'repay_id': prepay_id },
-      success: function (res) {
+      data: {
+        'repay_id': prepay_id
+      },
+      success: function(res) {
         that.requestPayment(res.data);
 
       }
     })
   },
   //申请支付
-  requestPayment: function (obj) {
+  requestPayment: function(obj) {
     wx.requestPayment({
       'timeStamp': obj.timeStamp,
       'nonceStr': obj.nonceStr,
       'package': obj.package,
       'signType': obj.signType,
       'paySign': obj.paySign,
-      'success': function (res) {
+      'success': function(res) {
         //支付成功之后，跳转到 订单列表页面
         wx.reLaunch({
           url: '../order/order'
         })
       },
-      'fail': function (res) {
-      }
+      'fail': function(res) {}
     })
   },
 
